@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 from sklearn.metrics import classification_report
-from src.train import train_model
+from src.model.train import train_model
 from src.evaluate import predict_single_text
 from sklearn.metrics import accuracy_score, confusion_matrix
 import matplotlib.pyplot as plt
@@ -15,7 +15,7 @@ img_path = "output/metrics_report.png"
 report_path = "output/model_report.md"
 
 # ---------- 加载模型 ----------
-model, dataset = train_model("data/spam.csv", epochs=3)
+model, dataset = train_model("dataset/spam.csv", epochs=3)
 device = "cuda" if model.parameters().__next__().is_cuda else "cpu"
 
 # ---------- 预测 ----------
@@ -55,25 +55,25 @@ avg_response = (end - start) / 10
 
 # ---------- 写入 Markdown ----------
 with open(report_path, "w", encoding="utf-8") as f:
-    f.write(f"# 📊 模型评估报告\n")
+    f.write(f"# 模型评估报告\n")
     f.write(f"生成时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
 
-    f.write("## ✅ 1. 分类指标\n")
+    f.write("## 1. 分类指标\n")
     f.write(f"- 准确率：**{accuracy:.2%}**\n")
     f.write(f"- Spam F1-score：**{f1_spam:.2f}**\n")
     f.write(f"- Ham F1-score：**{f1_ham:.2f}**\n\n")
 
-    f.write("## ⏱️ 2. 性能指标\n")
+    f.write("## 2. 性能指标\n")
     f.write(f"- 平均响应时间：**{avg_response:.4f} 秒/条**\n\n")
 
-    f.write("## 🔥 3. 混淆矩阵图表\n")
+    f.write("## 3. 混淆矩阵图表\n")
     f.write(f"![混淆矩阵]({os.path.basename(img_path)})\n\n")
 
-    f.write("## 📋 4. 完整分类报告（JSON）\n")
+    f.write("## 4. 完整分类报告（JSON）\n")
     f.write("```json\n")
     import json
 
     f.write(json.dumps(cls_report, indent=4))
     f.write("\n```\n")
 
-print(f"✅ 报告已生成：{report_path}")
+print(f"报告已生成：{report_path}")

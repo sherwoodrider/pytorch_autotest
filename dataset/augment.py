@@ -29,19 +29,18 @@ def augment_csv(input_path, output_path, mode="spelling", limit=1000):
     if limit:
         df = df.iloc[:limit]
 
-    print(f"🔄 增强模式: {mode}，共处理 {len(df)} 条")
+    print(f"增强模式: {mode}，共处理 {len(df)} 条")
 
     df["text_augmented"] = df["text"].apply(lambda x: augment_text(x, mode))
 
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     df.to_csv(output_path, index=False)
-    print(f"✅ 增强数据保存至: {output_path}")
+    print(f"增强数据保存至: {output_path}")
 
 if __name__ == "__main__":
-    # 示例：对测试集做拼写错误增强
     augment_csv(
         input_path="data/ag_news_test.csv",
-        output_path="data/ag_news_test_augmented_spelling.csv",
+        output_path="../dataset/data/ag_news_test_augmented_spelling.csv",
         mode="spelling",
         limit=500
     )

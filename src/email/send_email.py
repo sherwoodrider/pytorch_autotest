@@ -65,6 +65,11 @@ class TestEmail():
         except Exception as e:
             print(e)
 
+    def send_test_report_email(self,header, test_result_dict):
+        """统一入口，供外部调用发送测试报告"""
+        email_sender = TestEmail(header, test_result_dict)
+        email_sender.send_email()
+
     def send_email(self):
         msg = MIMEMultipart()
         msg["From"] = Header(self.sender_name)
