@@ -18,5 +18,6 @@ class BERTClassifier(nn.Module):
         torch.save(self.state_dict(), path)
 
     def load(self, path, map_location="cpu"):
-        self.load_state_dict(torch.load(path, map_location=map_location))
+        # self.load_state_dict(torch.load(path, map_location=map_location))
+        self.load_state_dict(torch.load(path, map_location=map_location, weights_only=True))
         self.eval()

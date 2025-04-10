@@ -6,7 +6,7 @@ from transformers import BertTokenizer
 from src.model.model_bert import BERTClassifier
 import sys
 
-from src.test_log.logger import TestLog
+from src.test_log.test_logger import TestLog
 
 
 class Predictor:
@@ -38,3 +38,12 @@ class Predictor:
 
         label = self.id2label.get(pred, "Unknown")
         return label
+
+    def log_info(self,message):
+        self.predictor_logger.log_info(message)
+
+    def log_error(self, message):
+        self.predictor_logger.log_error(message)
+
+    def log_critical(self, message):
+        self.predictor_logger.log_critical(message)

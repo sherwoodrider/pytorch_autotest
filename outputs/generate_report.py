@@ -2,7 +2,7 @@ import os
 from datetime import datetime
 from sklearn.metrics import classification_report
 from src.model.train import train_model
-from src.evaluate import predict_single_text
+from src.model.evaluate import predict_single_text
 from sklearn.metrics import accuracy_score, confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns

@@ -7,9 +7,9 @@ class DownloadDataset():
     def __init__(self,dataset_name):
         os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
         self.dataset_name = dataset_name
-        self.train_limit = 50
-        self.test_limit = 10
-        self.cache_dir = "D:\code_repo\pytorch_autotest\data\csv_output"
+        self.train_limit = 5000
+        self.test_limit = 1000
+        self.cache_dir = "D:\code_repo\pytorch_autotest\dataset\csv_output"
         self.dataset = None
         self.train_dataset = None
         self.test_dataset = None

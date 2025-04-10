@@ -17,7 +17,8 @@ class TestLog():
         level=level,
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
         filename=log_file,
-        filemode='a'  # 追加模式
+        filemode='a',  # 追加模式
+        force = True  # 强制重新配置
         )
         self.log_handle = ""
         # 创建一个 logger 实例

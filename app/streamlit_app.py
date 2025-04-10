@@ -1,13 +1,10 @@
 import streamlit as st
 import matplotlib.pyplot as plt
-import time
 import random
 
 from src.model.predict import Predictor
-from src.evaluate import predict_single_text
 from sklearn.metrics import accuracy_score
 import datetime
-from src.test_log.logger import TestLog
 import os
 
 def get_save_log_path(test_path):

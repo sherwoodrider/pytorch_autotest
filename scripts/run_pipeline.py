@@ -2,10 +2,8 @@ import pytest
 
 
 def run_tests():
-    pytest.main(["-v", "-k functional"])
-    # pytest.main(["-v", "test_performance.py"])
-    # pytest.main(["-v", "test_robustness.py"])
-    # pytest.main(["-v", "test_security.py"])
+    return pytest.main(["-s", "-v", "../tests"])
+    # pytest.main(["-s", "-k functional","../tests"])# performance  robustness security
 
 
 def send_test_report_email(header, result_dict):

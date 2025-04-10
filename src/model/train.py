@@ -8,7 +8,7 @@ import torch.optim as optim
 from sklearn.preprocessing import LabelEncoder
 from datasets import load_dataset
 from src.model.model_bert import BERTClassifier
-from src.test_log.logger import TestLog
+from src.test_log.test_logger import TestLog
 from tqdm import tqdm
 
 class Trainer:

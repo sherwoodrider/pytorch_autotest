@@ -3,7 +3,7 @@
 import gradio as gr
 from src.model.predict import Predictor
 import datetime
-from src.test_log.logger import TestLog
+from src.test_log.test_logger import TestLog
 import os
 def get_save_log_path(test_path):
     now = datetime.datetime.now()
