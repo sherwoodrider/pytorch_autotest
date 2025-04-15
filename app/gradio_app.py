@@ -5,16 +5,7 @@ from src.model.predict import Predictor
 import datetime
 from src.test_log.test_logger import TestLog
 import os
-def get_save_log_path(test_path):
-    now = datetime.datetime.now()
-    # 格式化时间为文件名格式
-    str_now = now.strftime('%Y_%m_%d_%H_%M_%S')
-    log_folder_name = "pytorch_" + str_now
-    save_log_folder = os.path.join(test_path, "logs")
-    test_log_folder = os.path.join(save_log_folder, log_folder_name)
-    if not os.path.exists(test_log_folder):
-        os.mkdir(test_log_folder)
-    return test_log_folder
+from src.utils.dir_utils import get_save_log_path
 class GradioApp:
     def __init__(self, model_path, checkpoint_path):
         base_path = os.path.dirname(os.getcwd())

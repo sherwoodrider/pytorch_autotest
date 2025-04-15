@@ -50,6 +50,37 @@ class DownloadDataset():
         top_data.to_csv(save_path, index=False)
         print("{} is already save to {}".format(self.dataset_name,save_path))
 
+
+    def download_glue_train_data_to_csv(self):
+        print("download_glue_train_data_to_csv {} begin".format(self.dataset_name))
+        tasks = ["cola", "sst2", "mrpc", "stsb", "qqp", "mnli", "qnli", "rte", "wnli"]
+        for task in tasks:
+            self.train_dataset = load_dataset("glue", task, split="train")
+            df = pd.DataFrame(self.train_dataset)
+            # 打乱数据
+            shuffled_data = df.sample(frac=1, random_state=42).reset_index(drop=True)
+            top_data = shuffled_data.head(self.train_limit)
+            if not os.path.exists(self.cache_dir):
+                os.makedirs(self.cache_dir)
+            train_save_path = os.path.join(self.cache_dir, "{}_{}_train.csv".format(self.dataset_name ,task))
+            top_data.to_csv(train_save_path, index=False)
+            print("{} is already save to {}".format(self.dataset_name,train_save_path))
+
+    def download_glue_test_data_to_csv(self):
+        print("download_glue_test_data_to_csv {} begin".format(self.dataset_name))
+        tasks = ["cola", "sst2", "mrpc", "stsb", "qqp", "mnli", "qnli", "rte", "wnli"]
+        for task in tasks:
+            self.test_dataset = load_dataset("glue", task, split="test")
+            df = pd.DataFrame(self.test_dataset)
+            # 打乱数据
+            shuffled_data = df.sample(frac=1, random_state=42).reset_index(drop=True)
+            top_data = shuffled_data.head(self.test_limit)
+            if not os.path.exists(self.cache_dir):
+                os.makedirs(self.cache_dir)
+            save_path = os.path.join(self.cache_dir, "{}_{}_test.csv".format(self.dataset_name ,task))
+            top_data.to_csv(save_path, index=False)
+            print("{} is already save to {}".format(self.dataset_name,save_path))
+
     def translate_ag_news_label(self):
         label_map = {
             0: "World",
@@ -67,8 +98,11 @@ class DownloadDataset():
 
 if __name__ == '__main__':
     # name = "imdb"
-    name = "ag_news"
+    # name = "ag_news"
+    name = "glue"
     d = DownloadDataset(name)
-    d.download_train_data_to_csv()
-    d.download_test_data_to_csv()
+    # d.download_train_data_to_csv()
+    # d.download_test_data_to_csv()
+    d.download_glue_train_data_to_csv()
+    d.download_glue_test_data_to_csv()
 
